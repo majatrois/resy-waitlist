@@ -4,58 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resy Waitlist Joiner</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f7f9fc;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        label {
+            margin-bottom: 5px;
+            display: block;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0073e6;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005bb5;
+        }
+
+        #response {
+            margin-top: 15px;
+            color: green;
+        }
+    </style>
 </head>
 <body>
-    <h2>Join Resy Waitlist</h2>
     <form id="waitlistForm">
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required><br><br>
+        <h2>Join Resy Waitlist</h2>
 
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
 
-        <label for="restaurantId">Restaurant ID:</label><br>
-        <input type="text" id="restaurantId" name="restaurantId" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
 
-        <label for="date">Date (YYYY-MM-DD):</label><br>
-        <input type="date" id="date" name="date" required><br><br>
+        <label for="restaurantId">Restaurant ID:</label>
+        <input type="text" id="restaurantId" name="restaurantId" required>
 
-        <label for="time">Time (HH:MM):</label><br>
-        <input type="time" id="time" name="time" required><br><br>
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
 
-        <label for="partySize">Party Size:</label><br>
-        <input type="number" id="partySize" name="partySize" required><br><br>
+        <label for="time">Time:</label>
+        <input type="time" id="time" name="time" required>
+
+        <label for="partySize">Party Size:</label>
+        <input type="number" id="partySize" name="partySize" required>
 
         <button type="submit">Join Waitlist</button>
+        <div id="response"></div>
     </form>
-
-    <div id="response"></div>
-
-    <script>
-        // JavaScript to handle form submission
-        document.getElementById('waitlistForm').onsubmit = async function (e) {
-            e.preventDefault();
-            const formData = {
-                email: document.getElementById('email').value,
-                password: document.getElementById('password').value,
-                restaurantId: document.getElementById('restaurantId').value,
-                date: document.getElementById('date').value,
-                time: document.getElementById('time').value,
-                partySize: document.getElementById('partySize').value
-            };
-
-            // Send the data to our backend (to be built)
-            const response = await fetch('http://localhost:8080/join-waitlist', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-
-            const result = await response.json();
-            document.getElementById('response').innerText = result.message;
-        };
-    </script>
 </body>
 </html>
